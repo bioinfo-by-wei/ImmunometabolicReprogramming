@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -N score_crc_res
+#PBS -l nodes=node1:ppn=96
+#PBS -j n
+#PBS -q cpu
+#PBS -e ${PBS_JOBNAME}.out
+#PBS -o ${PBS_JOBNAME}.out
+
+cd /public2022/weijinfen/flux/script/crc_new
+source /public/home/weijinfen/miniconda3/etc/profile.d/conda.sh
+conda activate flux_score
+echo "running"
+
+R CMD BATCH --no-save ./1.get_scores.R
+
+wait
+

@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -N flux_crc_res
+#PBS -l nodes=node1:ppn=96
+#PBS -j n
+#PBS -q cpu
+#PBS -e ${PBS_JOBNAME}.out
+#PBS -o ${PBS_JOBNAME}.out
+
+
+cd /public2022/weijinfen/flux/script/crc_new
+source /public/home/weijinfen/miniconda3/etc/profile.d/conda.sh
+conda activate flux
+echo "running"
+
+R CMD BATCH --no-save /public2022/weijinfen/flux/script/crc_new/3.get_flux_crc.R
+
+wait
+
